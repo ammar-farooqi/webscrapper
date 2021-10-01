@@ -4,14 +4,15 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const htmlparser2 = require("htmlparser2");
 const app = express();
-const url =
+let url =
   "https://www.daraz.pk/catalog/?spm=a2a0e.home.search.1.35e34937TZorTD&q=roku&_keyori=ss&from=search_history&sugg=roku_0_1";
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  // res.render("index", { title: "Express" });
-
-  axios(url).then((response) => {
+router.post("/", async function (req, res, next) {
+  console.log("-----working----");
+  url = req.body.url;
+  try {
+    let response = await axios(url);
     const html = response.data;
     const dom = htmlparser2.parseDocument(html, {
       xmlMode: true,
@@ -19,6 +20,7 @@ router.get("/", function (req, res, next) {
     });
     let json;
     const $ = cheerio.load(dom);
+    console.log(html);
     let scripts = [];
     $("script").each(function () {
       if ($(this).text().includes("window.pageData")) {
@@ -27,15 +29,15 @@ router.get("/", function (req, res, next) {
         // console.log("json----->", json);
       }
     });
-    // let help = $(".c2prKC");
-    // let help = $(".c2prKC", html).each(function () {
-    //   const title = $(this).text();
-    //   console.log("--->", title);
-    // });
+
     let listItems = json.mods.listItems;
-    console.log(listItems);
-  });
-  res.status(200).send();
+    // console.log(listItems);
+
+    res.json(listItems).send();
+  } catch (err) {
+    console.log("err-->", err);
+    res.status(400).send();
+  }
 });
 
 module.exports = router;
