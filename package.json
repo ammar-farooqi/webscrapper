@@ -1,0 +1,17 @@
+{
+  "name": "nodeowasp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.22.0",
+    "cheerio": "^1.0.0-rc.10",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "htmlparser2": "^7.1.2",
+    "morgan": "~1.9.1"
+  }
+}
