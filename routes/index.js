@@ -11,10 +11,9 @@ let url =
 router.post("/", async function (req, res, next) {
   console.log("-----working----");
   url = req.body.url;
+  let response = await axios(url);
   const html = response.data;
   try {
-    let response = await axios(url);
-
     const dom = htmlparser2.parseDocument(html, {
       xmlMode: true,
       decodeEntities: true,
