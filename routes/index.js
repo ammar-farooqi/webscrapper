@@ -34,6 +34,7 @@ router.post("/", async function (req, res, next) {
 
     res.status(201).send(listItems);
   } catch (err) {
+    console.log("html---->", html);
     console.log("err-->", err);
     res.status(400).send(err);
   }
