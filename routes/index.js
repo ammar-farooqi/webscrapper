@@ -20,7 +20,6 @@ router.post("/", async function (req, res, next) {
     });
     let json;
     const $ = cheerio.load(dom);
-    console.log(html);
     let scripts = [];
     $("script").each(function () {
       if ($(this).text().includes("window.pageData")) {
@@ -33,10 +32,10 @@ router.post("/", async function (req, res, next) {
     let listItems = json.mods.listItems;
     // console.log(listItems);
 
-    res.json(listItems).send();
+    res.status(201).send(listItems);
   } catch (err) {
     console.log("err-->", err);
-    res.status(400).send();
+    res.status(400).send(err);
   }
 });
 
