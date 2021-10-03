@@ -3,11 +3,14 @@ var router = express.Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const htmlparser2 = require("htmlparser2");
-const app = express();
+
 let url =
   "https://www.daraz.pk/catalog/?spm=a2a0e.home.search.1.35e34937TZorTD&q=roku&_keyori=ss&from=search_history&sugg=roku_0_1";
 
 /* GET home page. */
+router.get("/", async function (req, res, next) {
+  res.status(200).send({ hello: "woow" });
+});
 router.post("/", async function (req, res, next) {
   console.log("-----working----");
   url = req.body.url;
