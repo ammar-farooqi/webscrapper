@@ -1,0 +1,14 @@
+node_modules/
+downloadedlogs/
+
+documentation/
+
+# # Elastic Beanstalk Files
+.elasticbeanstalk/*
+
+
+# Elastic Beanstalk Files
+
+.environments/*
+
+src/ormconfig.ts
